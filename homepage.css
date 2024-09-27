@@ -1,0 +1,389 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Body and global styles */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color:rgb(180, 224, 187);
+}
+
+/* Header and hero section */
+.header-content {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('homepage1.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+}
+
+.hero-section .hero-text h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero-section .hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    padding: 0.8rem 1.5rem;
+    background-color: #83db6d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.cta-button:hover {
+    background-color: #ffffff;
+    color:black;
+}
+
+/* Sticky navbar */
+.sticky-nav {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: #333;
+    padding: 1rem 0;
+    z-index: 1000;
+}
+
+.sticky-nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.sticky-nav ul li {
+    margin: 0 1.5rem;
+}
+
+.sticky-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.sticky-nav ul li a:hover {
+    color: #50b686;
+}
+
+/* Sections */
+.section {
+    padding: 0 0;
+    text-align: center;
+}
+
+.section h2 {
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+#services {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.service-card {
+    background-color: rgb(111, 192, 154);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    text-align: center;
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.gallery img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+#photos .gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 2rem 0;
+    text-align: center;
+
+}
+
+footer .social-icons {
+    margin-bottom: 1rem;
+}
+
+footer .social-icons a {
+    color: #fff;
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+footer .social-icons a:hover {
+    color: #ff5722;
+}
+
+/* Management Images */
+.management-images {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.management-image {
+    width: 200px;
+    text-align: center;
+}
+
+.management-image img {
+    width: 100%;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Video Container */
+.video-container {
+    position: relative;
+    padding-top: 56.25%; /* 16:9 aspect ratio */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Auth buttons to show the dynamic box */
+.auth-button {
+    padding: 0.5rem 1rem;
+    background-color: #55cc5b;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+    background-color: #ffffff;
+    color:black;
+}
+
+.auth-buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.auth-button:focus ~ .dynamic-box,
+.auth-button:hover ~ .dynamic-box {
+    display: block;
+}
+
+.dynamic-box {
+    background-color: #333;
+    padding: 1px;
+    position: relative;
+    z-index: 80;
+}
+
+.sticky-nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.sticky-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    display: block;
+}
+.photo-description, .management-description {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    display: none; /* Hidden by default */
+}
+
+.gallery-item img, .management-item img {
+    cursor: pointer;
+}
+
+.gallery-item img:hover, .management-item img:hover {
+    opacity: 0.8;
+}
+/* CSS for Header Scroll Effect */
+header.scrolled {
+    background-color: rgba(0, 0, 0, 0.8); /* Darker background on scroll */
+    transition: background-color 0.3s ease;
+}
+footer {
+    background-color: #282c34; /* Dark background for a professional look */
+    color: #ffffff; /* White text for contrast */
+    padding: 40px 20px;
+    font-family: Arial, sans-serif;
+}
+
+footer {
+    background-color: #282c34; /* Dark background for a professional look */
+    color: #ffffff; /* White text for contrast */
+    padding: 40px 20px;
+    font-family: Arial, sans-serif;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+    margin-bottom: 2px; /* Space below the footer content */
+}
+
+.footer-column {
+    padding: 10px;
+}
+
+.footer-column h2 {
+    border-bottom: 2px solid #ffffff; /* Underline headings */
+    padding-bottom: 8px;
+    margin-bottom: 7px;
+    font-size: 15px;
+}
+
+.awards ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; /* Remove default margin */
+}
+
+.awards ul li {
+    margin-bottom: 10px;
+}
+
+.contact-info p {
+    margin: 5px 0;
+}
+
+/* Center-align social media icons and newsletter */
+.contact-social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-media {
+    margin-bottom: 20px;
+}
+
+.social-media h2 {
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ffffff;
+    padding-bottom: 4px;
+}
+
+.social-media .social-icon {
+    margin: 0 10px;
+    font-size: 24px;
+    color: #ffffff;
+    text-decoration: none;
+}
+.newsletter h2{
+    border-bottom: 2px solid #ffffff;
+    padding-bottom: 4px;
+    margin-bottom: 15px;
+}
+.newsletter {
+    text-align: center;
+}
+
+.newsletter form {
+    display: inline-block;
+}
+
+.newsletter input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.newsletter button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #61dafb; /* Highlight button color */
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.newsletter button:hover {
+    background-color: #21a1f1; /* Darker shade on hover */
+}
+
+.footer-extra {
+    text-align: center;
+    background-color: #1c1f23; /* Slightly different background color for distinction */
+    color: #ffffff;
+    padding: 20px;
+}
+
+.footer-extra p {
+    margin: 10px 0;
+}
+
+.footer-extra a {
+    color: #61dafb; /* Highlight link color */
+    text-decoration: none;
+}
+
+.footer-extra a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #444; /* Slightly lighter border for separation */
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="Adminpage.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Admin Dashboard</h1>
+            <div class="button-container">
+                <button onclick="showCustomerDetails()">Customers</button>
+                <button onclick="showShopOwnerDetails()">Shop Owners</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Customer List Section -->
+        <section id="customer-list" class="content-section hidden">
+            <h2>Customer List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="customerTableBody">
+                    <!-- Customer rows will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Shop Owner List Section -->
+        <section id="shopowner-list" class="content-section hidden">
+            <h2>Shop Owner List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Business Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="shopOwnerTableBody">
+                    <!-- Shop owner rows will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </footer>
+
+    <script src="Adminpage.js"></script>
+</body>
+</html>
