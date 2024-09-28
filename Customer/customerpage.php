@@ -7,12 +7,13 @@ if (!isset($_SESSION['customer_id']) || $_SESSION['role'] != 'customer') {
     header("Location: LoginPage.php");
     exit();
 }
+echo $_SESSION['customer_id']. $_SESSION['role'];
 
 // Fetch the customer ID
 $customer_id = $_SESSION['customer_id'];
 
 // Database connection (assumed already included)
-include 'config.php';
+include '../config.php';
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +33,7 @@ include 'config.php';
                 <ul class="nav-menu">
                     <li><a href="profile.php">Profile</a></li>
                     <li><a href="alerts.php">Alerts</a></li>
-                    <li><a href="#notifications">Notifications <span id="notificationIcon" class="hidden">🔔</span></a></li>
+                    <li><a href="notification.php">Notifications <span id="notificationIcon" class="hidden">🔔</span></a></li>
                     <li><a href="#shops">Browse Shops</a></li>
                     <li><a href="replies.php">Replies</a></li>
                     <li><a href="shopdetails.php">Shop Details</a></li>

@@ -7,6 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
     $loginAs = $_POST['loginAs'];
 
+
+
+
     // Debugging - Output values for verification
     error_log("Login Attempt: Credential - $loginCredential, Role - $loginAs");
 
@@ -22,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Using password_verify for secure password comparison
             if (password_verify($password, $user['password'])) {
                 // Store user details in session for tracking
-                if($loginAs==='customer'){
+                if($loginAs=='customer'){
                     $_SESSION['customer_id'] = $user['customer_id']; // Store the user's id
                 }
                 else{
@@ -33,9 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
                 // Redirect based on role
                 if ($loginAs == 'customer') {
-                    header("Location: customerpage.php");
+                    header("Location: Customer/customerpage.php");
                 } else {
-                    header("Location: shopowner.php");
+                    header("Location: Shop/shopowner.php");
                 }
                 exit();
             } else {
