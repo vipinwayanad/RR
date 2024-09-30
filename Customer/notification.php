@@ -24,7 +24,7 @@ if (isset($_GET['action'])) {
     if ($action === 'delete') {
         $id = $_GET['id'];
 
-        $deleteQuery = $conn->prepare("DELETE FROM replay_messages WHERE id = ? AND customer_id = ?");
+        $deleteQuery = $conn->prepare("DELETE FROM replay_messages WHERE reply_id = ? AND customer_id = ?");
         $deleteQuery->bind_param("ii", $id, $customer_id);
         if ($deleteQuery->execute()) {
             echo 'success';
@@ -44,12 +44,17 @@ if (isset($_GET['action'])) {
 }
 
 // Fetch notifications from the database
-$query = $conn->prepare("SELECT * FROM replay_messages WHERE customer_id = ?");
+$query = $conn->prepare("
+    SELECT r.reply_id, r.description AS message, r.price, s.shopname, s.address, s.phone AS shop_phone 
+    FROM replay_messages r
+    JOIN shop_detail s ON r.shop_id = s.shop_id
+    JOIN customer_need cn ON r.need_id = cn.need_id
+    WHERE r.customer_id = ?
+");
 $query->bind_param("i", $customer_id);
 $query->execute();
 $result = $query->get_result();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -146,12 +151,13 @@ $result = $query->get_result();
             <?php if ($result->num_rows > 0): ?>
                 <ul id="notificationList">
                     <?php while ($row = $result->fetch_assoc()): ?>
-                        <li class="notification <?php echo $row['is_read'] ? 'read' : 'unread'; ?>" data-id="<?php echo $row['id']; ?>">
-                            <p><?php echo "Shop name:". $row['shop_name']; ?></p>
-                            <p><?php echo "Address:".$row['shop_address']; ?></p>
-                            <p><?php echo "Phone Number".$row['shop_phone']; ?></p>
-                            <p><?php echo "Message:".$row['message']; ?></p>
-                            <button class="delete-btn" onclick="deleteNotification(<?php echo $row['id']; ?>)">Delete</button>
+                        <li class="notification" data-id="<?php echo $row['reply_id']; ?>">
+                            <p><?php echo "Shop name: " . $row['shopname']; ?></p>
+                            <p><?php echo "Address: " . $row['address']; ?></p>
+                            <p><?php echo "Phone Number: " . $row['shop_phone']; ?></p>
+                            <p><?php echo "Message: " . $row['message']; ?></p>
+                            <p><?php echo "Price: $" . $row['price']; ?></p>
+                            <button class="delete-btn" onclick="deleteNotification(<?php echo $row['reply_id']; ?>)">Delete</button>
                         </li>
                     <?php endwhile; ?>
                 </ul>
@@ -164,26 +170,25 @@ $result = $query->get_result();
     <script>
         // Function to delete a single notification
         function deleteNotification(id) {
-    console.log("Deleting notification with ID: " + id);  // Log the ID
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", "notification.php?action=delete&id=" + id, true);
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            console.log("Server response: " + xhr.responseText);  // Log server response
-            if (xhr.responseText.trim() === 'success') {
-                alert("Notification deleted!");
-                const notification = document.querySelector(`li[data-id='${id}']`);
-                notification.remove();
-            } else {
-                alert("Error deleting notification: " + xhr.responseText);
-            }
-        } else {
-            alert("Error deleting notification");
+            console.log("Deleting notification with ID: " + id);
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "notification.php?action=delete&id=" + id, true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log("Server response: " + xhr.responseText);
+                    if (xhr.responseText.trim() === 'success') {
+                        alert("Notification deleted!");
+                        const notification = document.querySelector(`li[data-id='${id}']`);
+                        notification.remove();
+                    } else {
+                        alert("Error deleting notification: " + xhr.responseText);
+                    }
+                } else {
+                    alert("Error deleting notification");
+                }
+            };
+            xhr.send();
         }
-    };
-    xhr.send();
-}
-
 
         // Function to delete all notifications
         function deleteAllNotifications() {
