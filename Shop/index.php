@@ -192,7 +192,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['notification'])) {
             <h2>Recent Replies</h2>
             <table>
                 <tr>
-                    <th>Reply ID</th>
+                    <th>Customer</th>
                     <th>Description</th>
                     <th>Price</th>
                     <th>Status</th>
